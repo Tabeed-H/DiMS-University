@@ -1,0 +1,23 @@
+/* UserProfile.css */
+
+.user-profile {
+  background-color: #fff;
+  color: #000;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.user-profile h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.user-info {
+  font-size: 16px;
+}
+
+.user-info p {
+  margin: 10px 0;
+}

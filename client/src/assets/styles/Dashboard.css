@@ -1,0 +1,9 @@
+/* UserDashboard.css */
+
+.component-container {
+  width: 300px; /* Set your desired fixed width */
+  height: 400px; /* Set your desired fixed height */
+  overflow: hidden; /* Prevent overflow if content exceeds the fixed size */
+  border: 1px solid #ddd; /* Optional: Add a border for the container */
+  border-radius: 5px; /* Optional: Add rounded corners */
+}

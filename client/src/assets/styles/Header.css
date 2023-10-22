@@ -1,0 +1,52 @@
+/* Header.css */
+/* Header.css */
+
+/* Style for the entire header */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 98%;
+  background-color: #333; /* Change to your desired background color */
+  color: #fff; /* Change to your desired text color */
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between;
+  z-index: 100; /* Ensure it's on top of other content */
+}
+
+/* Style for the user info container within the header */
+/* .user-info0 {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  border: solid 2px #fff;
+} */
+
+/* Style for the user's name */
+.user-name {
+  font-weight: bold;
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+/* Style for the connected account information */
+.connected-account {
+  font-size: 14px;
+}
+
+/* Add more styles for the header as needed */
+
+.circle-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%; /* Create a circular shape */
+  background-color: #fff; /* Circle background color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #007bff; /* Text or icon color inside the circle */
+  font-size: 16px;
+  font-weight: bold;
+}
