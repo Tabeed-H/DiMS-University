@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   margin-top: 20px;
+  width: 50%;
 }
 
 /* Style for the address input field */

@@ -114,7 +114,7 @@ contract DigitalIdentityManagement {
 
     // Function to grant access to a service provider
     function grantAccess(address _serviceProviderAddress) external {
-        require(users[msg.sender].isUserSet, "User not found");
+        // require(users[msg.sender].isUserSet, "User not found");
         require(serviceProviders[_serviceProviderAddress].isRegistered, "Service Provider not registered");
         require(!users[msg.sender].userAccessList[_serviceProviderAddress], "Access already granted");
 

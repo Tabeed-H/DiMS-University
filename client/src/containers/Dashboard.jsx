@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import { ethers } from "ethers"; // Import ethers
 import DigitalIdentityManagement from "../../../artifacts/contracts/DigitalIdentityManagement.sol/DigitalIdentityManagement.json";
 import Header from "../components/user/Header";
-// import Navigation from "../components/user/Navigation";
 import UserProfile from "../components/user/UserProfile";
 import AccessRequests from "../components/user/AccessRequest";
 import AddressBar from "../components/user/AddressBar";
@@ -25,9 +24,8 @@ const UserDashboard = () => {
     setIsUserProfileActive(false);
     setIsAccessRequestsActive(true);
   };
-  const [userAddress, setUserAddress] = useState("");
-  let contract;
-  let address;
+  let [contract, setContract] = useState();
+  let [address, setAddress] = useState();
   const [userData, setUserData] = useState({
     firstName: "",
     middleName: "",
@@ -55,25 +53,28 @@ const UserDashboard = () => {
     if (provider) {
       await window.ethereum.request({ method: "eth_requestAccounts" });
       const signer = provider.getSigner();
-      address = await signer.getAddress();
-      setUserAddress(address);
+      // address = await signer.getAddress();
+      setAddress(await signer.getAddress());
       let contractAddress = "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512";
 
-      contract = new ethers.Contract(
+      let incontract = new ethers.Contract(
         contractAddress,
         DigitalIdentityManagement.abi,
         signer
       );
+      setContract(incontract);
     } else {
       alert("Meta Mask is not Installed");
     }
   };
   const getUserDetails = async () => {
-    await getConnection();
-
     try {
+      await getConnection();
+      console.log(contract);
+      console.log(address);
       // Call the addUser function on the smart contract
       const transaction = await contract.getUserDetails(address);
+      console.log(transaction);
       const [
         firstName,
         middleName,
@@ -93,11 +94,8 @@ const UserDashboard = () => {
         pno,
         physicalAddress,
       });
-      console.log(userData);
-
-      // Registration successful, you can add further logic here
-      alert("User fetched!");
     } catch (error) {
+      console.log(error.message);
       alert("User Not Found!");
     }
   };
@@ -105,12 +103,12 @@ const UserDashboard = () => {
   const fetchAllowedServiceProviders = async () => {
     try {
       await getConnection();
-
       // Call the `getUserAccessList` function on your contract
       const accessList = await contract.getUserAccessList();
 
       // Update the state variable with the list of allowed service providers
       setAllowedServiceProviders(accessList);
+      console.log(accessList);
     } catch (error) {
       console.error("Error fetching allowed service providers:", error);
       alert(
@@ -119,33 +117,73 @@ const UserDashboard = () => {
     }
   };
 
+  const deleteAccess = async (serviceProviderAddress) => {
+    try {
+      await getConnection();
+      const transacttion = await contract.revokeAccess(serviceProviderAddress);
+
+      await transacttion.wait();
+      fetchAllowedServiceProviders();
+    } catch (error) {
+      alert("error Occured!");
+    }
+  };
+
+  const giveAccess = async (serviceProviderAddress) => {
+    try {
+      await getConnection();
+      const transaction = await contract.grantAccess(serviceProviderAddress);
+      await transaction.wait();
+      fetchAllowedServiceProviders();
+    } catch (error) {
+      alert(
+        "Error granting access. Please check your wallet connection and try again."
+      );
+    }
+  };
+
   useEffect(() => {
-    getUserDetails();
-    fetchAllowedServiceProviders();
+    const initializeUser = async () => {
+      await getConnection();
+      const userAddress = await contract.signer.getAddress();
+      setAddress(userAddress);
+
+      if (userAddress) {
+        await getUserDetails();
+        await fetchAllowedServiceProviders();
+      }
+    };
+
+    initializeUser();
   }, []);
 
   return (
-    <div className="user-dashboard">
-      <Header user={userData.firstName} connectedAccount={userAddress} />
-      <AddressBar />
+    <>
+      <Header user={userData.firstName} connectedAccount={address} />
       <div className="dashboard-content">
-        <div>
+        <AddressBar onGiveAccess={giveAccess} />
+        <div className="toggle-button-container">
           <button onClick={toggleUserProfile} className="toggle-button">
             View Profile
           </button>
           <button onClick={toggleAccessRequests} className="toggle-button">
-            Allowed
+            View Allowed
           </button>
         </div>
         <div className="component-container">
           {isUserProfileActive && <UserProfile data={userData} />}
           {isAccessRequestsActive && (
-            <AccessRequests data={allowedServiceProviders} />
+            <AccessRequests
+              data={allowedServiceProviders}
+              onDelete={deleteAccess}
+            />
           )}
         </div>
-        {/* The active section is displayed based on the state */}
       </div>
-    </div>
+      <footer>
+        <p>&copy; 2023 TrustChain</p>
+      </footer>
+    </>
   );
 };
 

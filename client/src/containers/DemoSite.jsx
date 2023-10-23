@@ -3,14 +3,14 @@ import "../assets/styles/DemoSite.css";
 import LoginModal from "../components/user/LoginModal";
 import { ethers } from "ethers";
 import DigitalIdentityManagement from "../../../artifacts/contracts/DigitalIdentityManagement.sol/DigitalIdentityManagement.json";
-
+import { Link } from "react-router-dom";
 function DemoSite() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [userName, setUserName] = useState("");
   let contract;
   let [address, setAddress] = useState("");
-
+  const _serviceProviderAddress = "0xFABB0ac9d68B0B445fB7357272Ff202C5651694a";
   const getConnection = async () => {
     if (!window.ethereum) {
       alert("MetaMask Not Installed!");
@@ -39,9 +39,7 @@ function DemoSite() {
   const handleLogin = async () => {
     try {
       await getConnection();
-      let result = await contract.getUserDetails(
-        "0x9965507D1a55bcC2695C58ba16FB37d819B0A4dc"
-      );
+      let result = await contract.provideDetails(_serviceProviderAddress);
       console.log(result);
 
       // Assuming your result includes the user's name
@@ -50,6 +48,7 @@ function DemoSite() {
         setUserName(result.user_FirstName);
       }
     } catch (err) {
+      alert("Access Denied!");
       console.log(err.message);
     }
   };
@@ -90,7 +89,9 @@ function DemoSite() {
               <button className="login-button" onClick={openModal}>
                 Login
               </button>
-              <button className="join-us-button">Join Us</button>
+              <button className="join-us-button">
+                <Link to="/demo/signup">Join Us</Link>
+              </button>
             </>
           )}
         </div>

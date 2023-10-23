@@ -5,10 +5,13 @@ import "../../assets/styles/Header.css";
 const Header = (props) => {
   return (
     <header className="header">
-      <span className="connected-account">
-        Connected Account: {props.connectedAccount}
-      </span>
-      <span className="user-name">{props.user}</span>
+      <div className="connected-account">
+        <div className="logo">TrustChain</div>
+        <div className="connect-account-name">
+          Connected Account: {props.connectedAccount}
+        </div>
+      </div>
+      <span className="user-name">Hi, {props.user}</span>
     </header>
   );
 };

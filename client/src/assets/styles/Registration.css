@@ -2,10 +2,12 @@
 .registration-container {
   text-align: center;
   padding: 20px;
+  width: 50%;
+  margin-left: 25%;
 }
 
 .registration-container h2 {
-  font-size: 24px;
+  font-size: 12px;
   margin-bottom: 20px;
 }
 

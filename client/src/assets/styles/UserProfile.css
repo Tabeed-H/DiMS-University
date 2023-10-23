@@ -17,6 +17,13 @@
 
 .user-info {
   font-size: 16px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.left {
+  font-weight: bold;
 }
 
 .user-info p {

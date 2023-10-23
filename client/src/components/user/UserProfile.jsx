@@ -9,27 +9,24 @@ const UserProfile = (props) => {
     <div className="user-profile">
       <h2>User Profile</h2>
       <div className="user-info">
-        <p>
-          <strong>First Name:</strong> {data.firstName}
-        </p>
-        <p>
-          <strong>Middle Name:</strong> {data.middleName}
-        </p>
-        <p>
-          <strong>Last Name:</strong> {data.lastName}
-        </p>
-        <p>
-          <strong>Email:</strong> {data.email}
-        </p>
-        <p>
-          <strong>D.O.B:</strong> {data.dob}
-        </p>
-        <p>
-          <strong>Phone Number:</strong> {data.pno}
-        </p>
-        <p>
-          <strong>Address:</strong> {data.physicalAddress}
-        </p>
+        <div className="left">
+          <p>First Name</p>
+          <p>Middle Name</p>
+          <p>Last Name</p>
+          <p>Email</p>
+          <p>Date of Birth</p>
+          <p>Contact</p>
+          <p>Address</p>
+        </div>
+        <div className="right">
+          <p>{data.firstName}</p>
+          <p>{data.middleName}</p>
+          <p>{data.lastName}</p>
+          <p>{data.email}</p>
+          <p>{data.dob}</p>
+          <p>{data.pno}</p>
+          <p>{data.physicalAddress}</p>
+        </div>
       </div>
     </div>
   );

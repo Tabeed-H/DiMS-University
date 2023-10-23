@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { ethers } from "ethers"; // Import ethers.js
 import DigitalIdentityManagement from "../../../artifacts/contracts/DigitalIdentityManagement.sol/DigitalIdentityManagement.json";
-import Header from "../components/user/Header";
 import "../assets/styles/ServiceProvider.css"; // Import the CSS file for AddServiceProvider
 
 const AddServiceProvider = () => {
@@ -44,7 +43,7 @@ const AddServiceProvider = () => {
 
   const handleAddServiceProvider = async () => {
     try {
-      getConnection();
+      await getConnection();
       if (ethers.utils.isAddress(serviceProviderAddress)) {
         await contract.addServiceProvider(
           serviceProviderAddress,
@@ -65,7 +64,7 @@ const AddServiceProvider = () => {
 
   return (
     <>
-      <Header user={""} connectedAccount={serviceProviderAddress} />
+      {/* <Header user={""} connectedAccount={serviceProviderAddress} /> */}
       <div className="add-service-provider-container">
         <h2>Add Service Provider</h2>
         <div className="form-group">
