@@ -1,0 +1,117 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+}
+
+/* Header Styles */
+header {
+  background-color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+}
+
+nav li {
+  margin-right: 20px;
+}
+
+nav a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #8d5cf6;
+}
+
+.cta-buttons {
+  display: flex;
+}
+
+.login-button {
+  background-color: #fff;
+  color: #8d5cf6;
+  border: 2px solid #8d5cf6;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.join-us-button {
+  background-color: #8d5cf6;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #8d5cf6;
+  color: #fff;
+}
+
+/* Hero Section Styles */
+.hero {
+  background-color: #8d5cf6;
+  color: #fff;
+  text-align: center;
+  padding: 60px;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.hero p {
+  font-size: 16px;
+  margin-bottom: 30px;
+}
+
+.search-books-button {
+  background-color: #fff;
+  color: #8d5cf6;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+  width: 30%;
+}
+
+.search-books-button:hover {
+  background-color: #8d5cf6;
+  color: #fff;
+}

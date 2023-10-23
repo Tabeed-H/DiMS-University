@@ -2,29 +2,34 @@
 import React from "react";
 import "../../assets/styles/UserProfile.css";
 
-const UserProfile = () => {
-  // Dummy user data (replace with actual user data from your application)
-  const userData = {
-    firstName: "John",
-    lastName: "Doe",
-    email: "johndoe@example.com",
-    // Add more user data fields as needed
-  };
+const UserProfile = (props) => {
+  const data = props.data;
 
   return (
     <div className="user-profile">
       <h2>User Profile</h2>
       <div className="user-info">
         <p>
-          <strong>First Name:</strong> {userData.firstName}
+          <strong>First Name:</strong> {data.firstName}
         </p>
         <p>
-          <strong>Last Name:</strong> {userData.lastName}
+          <strong>Middle Name:</strong> {data.middleName}
         </p>
         <p>
-          <strong>Email:</strong> {userData.email}
+          <strong>Last Name:</strong> {data.lastName}
         </p>
-        {/* Add more user data fields here */}
+        <p>
+          <strong>Email:</strong> {data.email}
+        </p>
+        <p>
+          <strong>D.O.B:</strong> {data.dob}
+        </p>
+        <p>
+          <strong>Phone Number:</strong> {data.pno}
+        </p>
+        <p>
+          <strong>Address:</strong> {data.physicalAddress}
+        </p>
       </div>
     </div>
   );
